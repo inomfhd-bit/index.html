@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine 💘</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      width: 300px;
+      height: 180px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      position: absolute;
+      background-color: #555;
+      color: white;
+      left: 170px;
+      top: 0;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 2s ease-out forwards;
+    }
+
+    @keyframes float {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Чи миний Валентин болох уу? 💝</h1>
+
+<div class="buttons">
+  <button id="yes">Тийм</button>
+  <button id="no">Үгүй</button>
+</div>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+
+  function moveNoButton() {
+    const maxX = 220;
+    const maxY = 120;
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+  }
+
+  noBtn.addEventListener("mouseover", moveNoButton);
+
+  // Утсанд зориулсан
+  noBtn.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveNoButton();
+  });
+
+  noBtn.addEventListener("click", () => {
+    alert("Үгүй гэдгийг дарж болохгүй ээ 😌");
+  });
+
+  yesBtn.addEventListener("click", () => {
+    for (let i = 0; i < 15; i++) {
+      createHeart();
+    }
+    setTimeout(() => {
+      alert("Good boy Happy Valentine Day");
+    }, 300);
+  });
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight - 50 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 2000);
+  }
+</script>
+
+</body>
+</html>
